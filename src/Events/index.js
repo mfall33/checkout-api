@@ -12,6 +12,7 @@ AuthEvent.on('new-user', async (user) => {
 
     try {
 
+        // create new verification token
         const token = crypto.randomBytes(16).toString('hex');
 
         const userVerifyToken = new UserVerifyToken({
