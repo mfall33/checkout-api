@@ -4,7 +4,7 @@ const EventEmitter = require('events').EventEmitter;
 const transporter = require('../Email');
 const UserVerifyToken = require('../Database/Models/UserVerifyToken');
 
-const { SERVER_BASE_URL } = process.env;
+const { SERVER_BASE_URL, APP_NAME, MAIL_FROM } = process.env;
 
 const AuthEvent = new EventEmitter();
 
@@ -23,10 +23,10 @@ AuthEvent.on('new-user', async (user) => {
         await userVerifyToken.save();
 
         await transporter.sendMail({
-            from: 'tester@gmail.com',
+            from: MAIL_FROM,
             to: user.email,
-            subject: "Welcome to CheckOut!",
-            text: "Your CheckOut account has been registered!",
+            subject: `Welcome to ${APP_NAME}!`,
+            text: `Your ${APP_NAME} account has been registered!`,
             html: `<a href="${SERVER_BASE_URL}/verify?token=${userVerifyToken.token}">Verify your Account</h1>`,
         })
 
