@@ -1,4 +1,5 @@
 require('dotenv').config()
+
 const fastify = require('fastify')();
 const { faker } = require('@faker-js/faker');
 const DB = require('./Database');
@@ -34,6 +35,7 @@ fastify.addHook('preHandler', (req, res, done) => {
 
 fastify.register(require('./Route/Auth'), { prefix: 'api/' })
 fastify.register(require('./Route/Products'), { prefix: 'api/' })
+fastify.register(require('./Route/Cart'), { prefix: 'api/' })
 fastify.register(require('./Route/Verification'))
 
 fastify.listen({ port: PORT }, function (err) {
