@@ -10,8 +10,8 @@ module.exports = async function (fastify) {
 
     fastify.post('/cart',
         { preHandler: [authorizeJwt, verifyUser] },
-        CartController.store
-    )
+        CartController.addItem
+    );
 
     fastify.patch('/cart/decrement',
         { preHandler: [authorizeJwt, verifyUser] },

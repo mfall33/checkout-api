@@ -1,24 +1,25 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../Database");
+const { log } = require("console");
 
 const { APP_SECRET_KEY } = process.env;
 const { TokenExpiredError } = jwt;
+
+// @snx-mfallon You either call done, or make the method async (or return promise directly), but not both.
 
 const catchError = (err, res) => {
 
     if (err instanceof TokenExpiredError) {
 
-        return res.status(401).send({
-            message: "Unauthorized!",
-            err: err.expiredAt.toUTCString()
-        });
-        
+        return res.status(401).send({ message: "Unauthorized!" });
+
     }
 
     return res.status(401).send({ message: "Unauthorized!" });
+
 }
 
-module.exports.authorizeJwt = (req, res, done) => {
+module.exports.authorizeJwt = async (req, res) => {
 
     let token = req.headers['x-access-token'];
 
@@ -37,21 +38,18 @@ module.exports.authorizeJwt = (req, res, done) => {
 
         req.userId = decoded.id;
 
-        done();
-        
+
     });
 }
 
-module.exports.verifyUser = async (req, res, done) => {
+module.exports.verifyUser = async (req, res) => {
 
     const user = await User.findById(req.userId);
 
     if (!user || !user.verified) {
-        
-        res.status(403).send({ message: "Unauthorized!"});
+
+        res.status(403).send({ message: "Unauthorized!" });
 
     }
-
-    done();
 
 }

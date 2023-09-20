@@ -13,27 +13,24 @@ module.exports.index = async (request, reply) => {
 
     } catch (e) {
 
-        console.log("CartError: " + JSON.stringify(e.messagex));
+        // console.log("CartError: " + JSON.stringify(e.message));
         reply.send({ message: "Failed to retrieve Cart" })
 
     }
 
 }
 
-module.exports.store = async (request, reply) => {
-
-    // something causing duplicate product entries in here needs fixed...
+module.exports.addItem = async function (request, reply) {
 
     try {
+
         const { productId, userId } = request.body;
 
         // validate the product to see if it exists
-        await validateProduct(productId, userId, reply);
+        const product = await validateProduct(productId, userId, reply);
 
         // Find or create a cart for the user
         const cart = await Cart.findOrCreate(request.userId);
-
-        console.log("Cart", cart);
 
         // Add the product to the cart
         await cart.addProduct(productId);

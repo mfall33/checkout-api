@@ -4,37 +4,61 @@ const CartSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        unique: true,
+        // unique: true,
         ref: 'User'
     },
     products: [{
         product: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Product',
-            unique: true
+            // unique: true
         },
         quantity: {
             type: Number,
             default: 1,
         }
     }],
+},
+    {
+        toObject: { virtuals: true },
+        toJSON: { virtuals: true },
+    }
+);
+
+CartSchema.virtual('total').get(function () {
+
+    let total = 0;
+
+    for (const item of this.products) {
+
+        const productPrice = item.product.price;
+        total += productPrice * item.quantity;
+
+    }
+
+    return total;
+
 });
 
 // statics: Can be called directly from the model
 // methods: Can be called from an instance of a model
 
 CartSchema.statics.findOrCreate = async function (userId) {
+
     let cart = await this.findOne({ user: userId });
 
     if (!cart) {
+
         cart = new this({
             user: userId,
             products: [],
         });
+
         await cart.save();
     }
 
     return cart;
+
 };
 
 CartSchema.methods.addProduct = async function (productId) {
@@ -42,15 +66,20 @@ CartSchema.methods.addProduct = async function (productId) {
         product.product.toString() === productId);
 
     if (productIndex !== -1) {
+
         this.products[productIndex].quantity++;
+
     } else {
+
         this.products.push({
             product: productId,
             quantity: 1
         });
+
     }
 
     await this.save();
+
 };
 
 
@@ -64,10 +93,6 @@ CartSchema.methods.incrementQuantity = async function (productId) {
         throw new Error("Invalid product identifier!");
     }
 }
-
-CartSchema.virtual('total').get(function () {
-    return 33;
-})
 
 
 const Cart = mongoose.model("Cart", CartSchema);
