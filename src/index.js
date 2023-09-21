@@ -5,8 +5,7 @@ const { faker } = require('@faker-js/faker');
 const DB = require('./Database');
 const { generateRandomNumber } = require('./Utils');
 
-const Product = DB.Product;
-
+const { Product } = DB;
 const { DB_PATH, PORT } = process.env;
 
 DB.mongoose.connect(DB_PATH)
@@ -20,7 +19,7 @@ DB.mongoose.connect(DB_PATH)
 
 fastify.addHook('preHandler', (req, res, done) => {
 
-    // only in development
+    // only in development..
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization, x-access-token");
