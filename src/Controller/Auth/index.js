@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const { JWT_EXPIRATION, APP_SECRET_KEY } = process.env;
 const { User } = require("../../Database");
-const stripe = require("../../Stripe");
+const { stripe } = require("../../Utils");
 
 module.exports.login = async (request, reply) => {
 

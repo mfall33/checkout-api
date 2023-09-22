@@ -1,3 +1,5 @@
+const Stripe = require('stripe');
+
 module.exports.generateRandomNumber = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -13,3 +15,8 @@ module.exports.paginationOptions = (req) => {
 module.exports.roundDownToNearestTen = (number) => {
     return Math.floor(number / 10) * 10;;
 }
+
+module.exports.stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    maxNetworkRetries: 1,
+    timeout: 1000,
+});
