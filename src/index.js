@@ -20,6 +20,7 @@ fastify.addHook('preHandler', (req, res, done) => {
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization, x-access-token");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
 
     const isPreflight = /options/i.test(req.method);
     

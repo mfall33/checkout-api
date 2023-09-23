@@ -22,12 +22,14 @@ module.exports.index = async (request, reply) => {
 
 module.exports.addItem = async function (request, reply) {
 
+    console.log("AddItem")
+
     try {
 
         const { productId, userId } = request.body;
 
         // validate the product to see if it exists
-        const product = await validateProduct(productId, userId, reply);
+        await validateProduct(productId, userId, reply);
 
         // Find or create a cart for the user
         const cart = await Cart.findOrCreate(request.userId);
@@ -41,8 +43,8 @@ module.exports.addItem = async function (request, reply) {
         reply.send(cart);
 
     } catch (e) {
-        console.log(e.message)
-        reply.send({ message: "Failed to retrieve Cart" });
+        console.log("Add Item: " + e.message)
+        reply.send({ message: "Failed to add Cart item" });
 
     }
 };
@@ -76,7 +78,7 @@ module.exports.decrementQuantity = async (request, reply) => {
     } catch (e) {
 
         console.log("CartError: " + JSON.stringify(e.message))
-        reply.send({ message: "Failed to retrieve Cart" });
+        reply.send({ message: "Failed to decrement Cart item quantity" });
 
 
     }
@@ -117,6 +119,8 @@ module.exports.removeItem = async (request, reply) => {
 
     } catch (e) {
 
+        console.log("RemoveItem: " + e.message)
+
         reply.send({ message: "Failed to remove item" })
 
     }
@@ -132,10 +136,14 @@ const validateProduct = async (productId, userId) => {
             user: userId
         });
 
+        if (!product) {
+            throw new Error("Invalid Product!");
+        }
+
         return product;
 
     } catch (e) {
-
+        console.log("validate product!")
         throw new Error("Invalid Product!");
 
     }

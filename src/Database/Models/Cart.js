@@ -27,17 +27,25 @@ const CartSchema = new mongoose.Schema({
 
 CartSchema.virtual('total').get(function () {
 
-    let total = 0;
+    try {
+        let total = 0;
 
-    for (const item of this.products) {
+        console.log("Productos: " + JSON.stringify(this.products))
 
-        const productPrice = item.product.price;
-        total += productPrice * item.quantity;
+        for (const item of this.products) {
+
+            const productPrice = item.product.price;
+            total += productPrice * item.quantity;
+
+        }
+
+        return total;
+
+    } catch(e) {
+        throw new Error(e);
+        console.log("Virtual Total: " + e.message);
 
     }
-
-    return total;
-
 });
 
 // statics: Can be called directly from the model
