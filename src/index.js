@@ -23,13 +23,24 @@ fastify.addHook('preHandler', (req, res, done) => {
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
 
     const isPreflight = /options/i.test(req.method);
-    
+
     if (isPreflight) {
         return res.send();
     }
 
     done();
-})
+});
+
+fastify.setErrorHandler(function (error, request, reply) {
+
+    if (error.validation) {
+
+        const { instancePath, message } = error.validation[0];
+
+        reply.status(422).send(new Error(`${instancePath.substring(1)} - ${message}`));
+    }
+
+});
 
 fastify.register(require('./Route/Stripe'))
 fastify.register(require('./Route/Verification'))

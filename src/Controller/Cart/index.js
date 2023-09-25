@@ -110,8 +110,9 @@ module.exports.removeItem = async (request, reply) => {
 
             await cart.save();
 
-            reply.send(cart);
+            await cart.populate('products.product');
 
+            reply.send(cart);
 
         }
 

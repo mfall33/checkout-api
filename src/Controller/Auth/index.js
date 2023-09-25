@@ -13,7 +13,10 @@ module.exports.login = async (request, reply) => {
 
         if (!user || !user.verified) {
 
-            reply.status(403).send({ message: "Unauthorized!!" });
+            reply.status(403).send({
+                success: false,
+                message: "Unauthorized!!",
+            });
 
         }
 
@@ -24,6 +27,7 @@ module.exports.login = async (request, reply) => {
 
         if (!passwordIsValid) {
             return reply.status(401).send({
+                success: false,
                 accessToken: null,
                 message: "Invalid Password!"
             });
@@ -36,14 +40,16 @@ module.exports.login = async (request, reply) => {
         reply.status(200).send({
             email: user.email,
             access_token: token,
-            stripe_customer_id: user.stripe_id
+            stripe_customer_id: user.stripe_id,
+            success: true
         });
 
     } catch (e) {
 
-        console.log(JSON.stringify(e.message))
-
-        reply.send({ message: "Failed to login" });
+        reply.send({
+            success: false,
+            message: "Failed to login"
+        });
 
     }
 
@@ -53,11 +59,15 @@ module.exports.signup = async (request, reply) => {
 
     try {
 
-        const user = await User.findOne({ email: request.body.email });
+        const { email, password } = request.body;
+
+
+        const user = await User.findOne({ email: email });
 
         if (user) {
 
             reply.send({
+                success: false,
                 message: "This email is already registered!"
             });
 
@@ -67,23 +77,28 @@ module.exports.signup = async (request, reply) => {
 
         if (!user) {
 
-            const customer = await stripe.customers.create({
-                name: request.body.email,
-                email: request.body.email,
+            const stripeCustomer = await stripe.customers.create({
+                name: email,
+                email: email,
             });
 
             const newUser = new User({
-                email: request.body.email,
-                password: bcrypt.hashSync(request.body.password),
-                stripe_id: customer.id
+                email: email,
+                password: bcrypt.hashSync(password),
+                stripe_id: stripeCustomer.id
             });
 
             if (newUser.save()) {
 
-                reply.send({ message: "User created successfully!" });
+                reply.send({
+                    success: true,
+                    message: "User created successfully!"
+                });
 
             } else {
-                throw new Error({ message: "Failed to create user!" })
+
+                throw new Error({ message: "Failed to create user!" });
+
             }
 
         }
@@ -91,7 +106,8 @@ module.exports.signup = async (request, reply) => {
     } catch (e) {
 
         reply.send({
-            message: e.message
+            message: e.message,
+            success: false
         })
 
     }
