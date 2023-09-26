@@ -49,11 +49,13 @@ module.exports.addItem = async function (request, reply) {
     }
 };
 
-module.exports.decrementQuantity = async (request, reply) => {
+module.exports.setQuantity = async (request, reply) => {
 
     try {
 
-        const { productId, userId } = request.body;
+        const { productId, quantity, userId } = request.body;
+
+        // console.log("Qty: " + quantity);
 
         await validateProduct(productId, userId, reply);
 
@@ -65,9 +67,9 @@ module.exports.decrementQuantity = async (request, reply) => {
             .findIndex(product =>
                 product.product.toString() === request.body.productId);
 
-        if (cart.products[productIndex].quantity > 1) {
-            cart.products[productIndex].quantity--;
-        }
+        console.log("productIndex: " + productIndex);
+
+        cart.products[productIndex].quantity = quantity;
 
         await cart.save();
 

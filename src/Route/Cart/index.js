@@ -13,9 +13,9 @@ module.exports = async function (fastify) {
         CartController.addItem
     );
 
-    fastify.patch('/cart/decrement',
+    fastify.patch('/cart',
         { preHandler: [authorizeJwt, verifyUser] },
-        CartController.decrementQuantity
+        CartController.setQuantity
     )
 
     fastify.delete('/cart',
