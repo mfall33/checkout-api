@@ -58,6 +58,7 @@ fastify.get("/", (request, reply) => { reply.send("<h1>Hello!</h1>") });
 
 fastify.listen({ port: PORT }, function (err) {
     if (err) {
+        console.log("Error: " + JSON.stringify(err))
         fastify.log.error(err)
         process.exit(1)
     }
