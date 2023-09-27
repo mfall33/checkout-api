@@ -43,6 +43,8 @@ fastify.setErrorHandler(function (error, request, reply) {
 
 });
 
+fastify.get("/", (request, reply) => { reply.send("<h1>Hello!</h1>") });
+
 fastify.register(require('./Route/Stripe'))
 fastify.register(require('./Route/Verification'))
 
