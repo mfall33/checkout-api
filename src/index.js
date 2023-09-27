@@ -3,14 +3,15 @@ require('dotenv').config()
 const fastify = require('fastify')();
 const { mongoose } = require('./Database');
 const { seedProducts } = require('./Seeder');
-const { DB_PATH, PORT } = process.env;
+const { PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
 
-mongoose.connect(DB_PATH)
+mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`)
     .then(() => {
         console.log("DB Connection established...");
         initialize();
     })
     .catch((err) => {
+        console.log("db_user: " + process.env.DB_USER);
         if (err) throw err;
     });
 

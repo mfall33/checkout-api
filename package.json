@@ -26,6 +26,7 @@
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.1",
     "mongo": "^0.1.0",
+    "mongodb": "^6.1.0",
     "mongoose": "^7.4.4",
     "nodemailer": "^6.9.4",
     "stripe": "^13.6.0"

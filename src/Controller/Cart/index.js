@@ -6,14 +6,12 @@ module.exports.index = async (request, reply) => {
 
         const cart = await Cart.findOrCreate(request.userId);
 
-        // trying to populate computed value total here
         await cart.populate('products.product');
 
         reply.send(cart);
 
     } catch (e) {
 
-        // console.log("CartError: " + JSON.stringify(e.message));
         reply.send({ message: "Failed to retrieve Cart" })
 
     }
@@ -55,8 +53,6 @@ module.exports.setQuantity = async (request, reply) => {
 
         const { productId, quantity, userId } = request.body;
 
-        // console.log("Qty: " + quantity);
-
         await validateProduct(productId, userId, reply);
 
         const cart = await Cart.findOne({
@@ -67,9 +63,10 @@ module.exports.setQuantity = async (request, reply) => {
             .findIndex(product =>
                 product.product.toString() === request.body.productId);
 
-        console.log("productIndex: " + productIndex);
 
-        cart.products[productIndex].quantity = quantity;
+        if (quantity > 0) {
+            cart.products[productIndex].quantity = quantity;
+        }
 
         await cart.save();
 
@@ -79,9 +76,7 @@ module.exports.setQuantity = async (request, reply) => {
 
     } catch (e) {
 
-        console.log("CartError: " + JSON.stringify(e.message))
         reply.send({ message: "Failed to decrement Cart item quantity" });
-
 
     }
 
@@ -93,14 +88,13 @@ module.exports.removeItem = async (request, reply) => {
 
         const { productId, userId } = request.body;
 
-        const product = await validateProduct(productId, userId, reply);
+        await validateProduct(productId, userId, reply);
 
         const cart = await Cart.findOne({
             user: request.userId
         });
 
         if (cart) {
-
 
             const productIndex = cart.products
                 .findIndex(cartProduct =>
@@ -121,8 +115,6 @@ module.exports.removeItem = async (request, reply) => {
         reply.send("Nothing in cart!");
 
     } catch (e) {
-
-        console.log("RemoveItem: " + e.message)
 
         reply.send({ message: "Failed to remove item" })
 
@@ -146,7 +138,7 @@ const validateProduct = async (productId, userId) => {
         return product;
 
     } catch (e) {
-        console.log("validate product!")
+
         throw new Error("Invalid Product!");
 
     }
