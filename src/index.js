@@ -19,44 +19,44 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb
         if (err) throw err;
     });
 
-// fastify.addHook('preHandler', (req, res, done) => {
+fastify.addHook('preHandler', (req, res, done) => {
 
-//     // only in development..
+    // only in development..
 
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization, x-access-token");
-//     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization, x-access-token");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
 
-//     const isPreflight = /options/i.test(req.method);
+    const isPreflight = /options/i.test(req.method);
 
-//     if (isPreflight) {
-//         return res.send();
-//     }
+    if (isPreflight) {
+        return res.send();
+    }
 
-//     done();
-// });
+    done();
+});
 
-// fastify.setErrorHandler(function (error, request, reply) {
+fastify.setErrorHandler(function (error, request, reply) {
 
-//     if (error.validation) {
+    if (error.validation) {
 
-//         const { instancePath, message } = error.validation[0];
+        const { instancePath, message } = error.validation[0];
 
-//         reply.status(422).send(new Error(`${instancePath.substring(1)} - ${message}`));
-//     }
+        reply.status(422).send(new Error(`${instancePath.substring(1)} - ${message}`));
+    }
 
-// });
+});
 
 fastify.get("/", (request, reply) => {
     reply.send("Hello World");
 });
 
-// fastify.register(require('./Route/Stripe'))
-// fastify.register(require('./Route/Verification'))
+fastify.register(require('./Route/Stripe'))
+fastify.register(require('./Route/Verification'))
 
-// fastify.register(require('./Route/Auth'), { prefix: 'api/' })
-// fastify.register(require('./Route/Products'), { prefix: 'api/' })
-// fastify.register(require('./Route/Cart'), { prefix: 'api/' })
+fastify.register(require('./Route/Auth'), { prefix: 'api/' })
+fastify.register(require('./Route/Products'), { prefix: 'api/' })
+fastify.register(require('./Route/Cart'), { prefix: 'api/' })
 
 fastify.listen({ port: PORT, host: '0.0.0.0' }, function (err) {
     if (err) {
