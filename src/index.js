@@ -61,7 +61,7 @@ fastify.get("/", (request, reply) => {
 // fastify.register(require('./Route/Products'), { prefix: 'api/' })
 // fastify.register(require('./Route/Cart'), { prefix: 'api/' })
 
-fastify.listen({ port: PORT }, function (err) {
+fastify.listen({ port: PORT, host: '0.0.0.0' }, function (err) {
     if (err) {
         console.log("Error: " + JSON.stringify(err))
         process.exit(1)
