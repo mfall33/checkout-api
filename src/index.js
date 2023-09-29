@@ -6,18 +6,18 @@ const { seedProducts } = require('./Seeder');
 const { PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
 
 
-mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-})
-    .then(() => {
-        console.log("DB Connection established...");
-        initialize();
-    })
-    .catch((err) => {
-        console.log("db_user: " + process.env.DB_USER);
-        if (err) throw err;
-    });
+// mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+// })
+//     .then(() => {
+//         console.log("DB Connection established...");
+//         initialize();
+//     })
+//     .catch((err) => {
+//         console.log("db_user: " + process.env.DB_USER);
+//         if (err) throw err;
+//     });
 
 // fastify.addHook('preHandler', (req, res, done) => {
 
