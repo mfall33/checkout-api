@@ -48,10 +48,7 @@ const { PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
 // });
 
 fastify.get("/", (request, reply) => {
-    reply
-        .code(200)
-        .header('Content-Type', 'application/json; charset=utf-8')
-        .send({ hello: 'world' })
+    reply.send("Hello World");
 });
 
 // fastify.register(require('./Route/Stripe'))
