@@ -6,18 +6,18 @@ const { seedProducts } = require('./Seeder');
 const { PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
 
 
-// mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
-//     useUnifiedTopology: true,
-//     useNewUrlParser: true,
-// })
-// .then(() => {
-//     console.log("DB Connection established...");
-//     initialize();
-// })
-// .catch((err) => {
-//     console.log("db_user: " + process.env.DB_USER);
-//     if (err) throw err;
-// });
+mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+})
+    .then(() => {
+        console.log("DB Connection established...");
+        initialize();
+    })
+    .catch((err) => {
+        console.log("db_user: " + process.env.DB_USER);
+        if (err) throw err;
+    });
 
 // fastify.addHook('preHandler', (req, res, done) => {
 
@@ -47,7 +47,12 @@ const { PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
 
 // });
 
-fastify.get("/", (request, reply) => { reply.send("<h1>Hello!</h1>") });
+fastify.get("/", (request, reply) => {
+    reply
+        .code(200)
+        .header('Content-Type', 'application/json; charset=utf-8')
+        .send({ hello: 'world' })
+});
 
 // fastify.register(require('./Route/Stripe'))
 // fastify.register(require('./Route/Verification'))
@@ -59,7 +64,6 @@ fastify.get("/", (request, reply) => { reply.send("<h1>Hello!</h1>") });
 fastify.listen({ port: PORT }, function (err) {
     if (err) {
         console.log("Error: " + JSON.stringify(err))
-        fastify.log.error(err)
         process.exit(1)
     }
 
