@@ -19,22 +19,6 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb
         if (err) throw err;
     });
 
-fastify.addHook('preHandler', (req, res, done) => {
-
-    // only in development..
-
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization, x-access-token");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
-
-    const isPreflight = /options/i.test(req.method);
-
-    if (isPreflight) {
-        return res.send();
-    }
-
-    done();
-});
 
 fastify.setErrorHandler(function (error, request, reply) {
 
@@ -46,6 +30,24 @@ fastify.setErrorHandler(function (error, request, reply) {
     }
 
 });
+
+fastify.register(require('@fastify/cors'), {
+    hook: 'preHandler',
+    delegator: (req, callback) => {
+        const corsOptions = {
+            // This is NOT recommended for production as it enables reflection exploits
+            origin: true
+        };
+
+        // do not include CORS headers for requests from localhost
+        if (/^localhost$/m.test(req.headers.origin)) {
+            corsOptions.origin = false
+        }
+
+        // callback expects two parameters: error and options
+        callback(null, corsOptions)
+    },
+})
 
 fastify.get("/", (request, reply) => {
     reply.send(`Welcome to ${APP_NAME} API`);
