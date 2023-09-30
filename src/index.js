@@ -36,7 +36,8 @@ fastify.register(require('@fastify/cors'), {
     delegator: (req, callback) => {
         const corsOptions = {
             // This is NOT recommended for production as it enables reflection exploits
-            origin: true
+            origin: true,
+            methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE']
         };
 
         // do not include CORS headers for requests from localhost
