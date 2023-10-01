@@ -1,9 +1,14 @@
 require('dotenv').config()
 
 const fastify = require('fastify')();
+const fs = require('fs');
+const util = require('util');
 const { mongoose } = require('./Database');
 const { seedProducts } = require('./Seeder');
 const { PORT, DB_USER, DB_PASS, DB_NAME, APP_NAME, FRONT_END_URL } = process.env;
+
+const readFile = util.promisify(fs.readFile);
+
 
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
     useUnifiedTopology: true,
@@ -52,6 +57,23 @@ fastify.register(require('@fastify/cors'), {
 fastify.get("/", (request, reply) => {
     reply.send(`Welcome to ${APP_NAME} API`);
 });
+
+fastify.get("/.well-known/pki-validation/A26DA35E708858E5E7BA9B632B7D49B4.txt", async (request, reply) => {
+
+    try {
+
+        const stream = await readFile('/Users/MatthewFallon/Projects/checkout-api/A26DA35E708858E5E7BA9B632B7D49B4.txt');
+
+        return reply.type('text/html').send(stream);
+
+    } catch (e) {
+        console.log(e.message)
+        reply.send("File not found");
+    }
+
+});
+
+
 
 fastify.register(require('./Route/Stripe'))
 fastify.register(require('./Route/Verification'))
