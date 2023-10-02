@@ -2,22 +2,17 @@ require('dotenv').config()
 
 const fastify = require('fastify')();
 const fastifyCors = require('@fastify/cors');
-const fs = require('fs');
-const util = require('util');
 const { mongoose } = require('./Database');
 const { seedProducts } = require('./Seeder');
 const { PORT, DB_USER, DB_PASS, DB_NAME, APP_NAME, FRONT_END_URL } = process.env;
-
-const readFile = util.promisify(fs.readFile);
-const path = require('path');
 
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 })
-    .then(() => {
+    .then(async () => {
         console.log("DB Connection established...");
-        initialize();
+        await seedProducts();
     })
     .catch((err) => {
         console.log("db_user: " + process.env.DB_USER);
@@ -43,8 +38,6 @@ fastify.register(fastifyCors, {
             // Allow requests from localhost
             cb(null, true);
         } else if (origin === FRONT_END_URL) {
-            // could use an array of origins here and check if indexOf is more than 0...
-            // Allow requests from https://checkout-dun-three.vercel.app
             cb(null, true);
         } else {
             // Deny all other origins
@@ -55,22 +48,6 @@ fastify.register(fastifyCors, {
 
 fastify.get("/", (request, reply) => {
     reply.send(`Welcome to ${APP_NAME} API`);
-});
-
-fastify.get("/.well-known/pki-validation/DC9608000F86B10A12E7188D10D4862C.txt", async (request, reply) => {
-
-    try {
-
-        const file = path.resolve('./DC9608000F86B10A12E7188D10D4862C.txt')
-        const stream = await readFile(file);
-
-        return reply.type('text/html').send(stream);
-
-    } catch (e) {
-        console.log(e.message);
-        reply.send("File not found");
-    }
-
 });
 
 fastify.register(require('./Route/Stripe'))
@@ -88,8 +65,4 @@ fastify.listen({ port: PORT, host: '0.0.0.0' }, function (err) {
 
     console.log(`App listening on port: ${PORT}`);
 
-})
-
-const initialize = async () => {
-    await seedProducts();
-}
+});
