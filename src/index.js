@@ -73,8 +73,6 @@ fastify.get("/.well-known/pki-validation/A26DA35E708858E5E7BA9B632B7D49B4.txt", 
 
 });
 
-
-
 fastify.register(require('./Route/Stripe'))
 fastify.register(require('./Route/Verification'))
 
