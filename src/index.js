@@ -63,12 +63,16 @@ fastify.get("/.well-known/pki-validation/A26DA35E708858E5E7BA9B632B7D49B4.txt", 
 
     try {
 
-        const stream = await readFile(path.resolve('./A26DA35E708858E5E7BA9B632B7D49B4.txt'));
+        const file = path.resolve('./A26DA35E708858E5E7BA9B632B7D49B4.txt')
+
+        console.log("File: " + file);
+        
+        const stream = await readFile(file);
 
         return reply.type('text/html').send(stream);
 
     } catch (e) {
-        console.log(e.message)
+        console.log(e.message);
         reply.send("File not found");
     }
 
