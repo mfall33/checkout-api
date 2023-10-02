@@ -59,14 +59,11 @@ fastify.get("/", (request, reply) => {
     reply.send(`Welcome to ${APP_NAME} API`);
 });
 
-fastify.get("/.well-known/pki-validation/A26DA35E708858E5E7BA9B632B7D49B4.txt", async (request, reply) => {
+fastify.get("/.well-known/pki-validation/DC9608000F86B10A12E7188D10D4862C.txt", async (request, reply) => {
 
     try {
 
-        const file = path.resolve('./A26DA35E708858E5E7BA9B632B7D49B4.txt')
-
-        console.log("File: " + file);
-        
+        const file = path.resolve('./DC9608000F86B10A12E7188D10D4862C.txt')        
         const stream = await readFile(file);
 
         return reply.type('text/html').send(stream);
