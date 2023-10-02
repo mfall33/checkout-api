@@ -36,28 +36,22 @@ fastify.setErrorHandler(function (error, request, reply) {
 
 });
 
-fastify.register(require('@fastify/cors'), {
-    hook: 'preHandler',
-    delegator: (req, callback) => {
-        const corsOptions = {
-            // This is NOT recommended for production as it enables reflection exploits
-            origin: FRONT_END_URL,
-            methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE']
-        };
-
-        console.log("Origin: " + req.headers.origin);
-
-        // do not include CORS headers for requests from localhost
-        if (/^localhost$/m.test(req.headers.origin)) {
-
-            console.log("Origin set to false");
-            corsOptions.origin = false;
+fastify.register(fastifyCors, {
+    origin: (origin, cb) => {
+        // Check if the origin is allowed
+        if (origin.includes('localhost')) {
+            // Allow requests from localhost
+            cb(null, true);
+        } else if (origin === 'https://checkout-dun-three.vercel.app') {
+            // could use an array of origins here and check if indexOf is more than 0...
+            // Allow requests from https://checkout-dun-three.vercel.app
+            cb(null, true);
+        } else {
+            // Deny all other origins
+            cb(new Error('Not allowed by CORS'));
         }
-
-        // callback expects two parameters: error and options
-        callback(null, corsOptions)
     },
-})
+});
 
 fastify.get("/", (request, reply) => {
     reply.send(`Welcome to ${APP_NAME} API`);
