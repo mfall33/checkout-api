@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const fastify = require('fastify')();
-const fastifyCors = require('fastify-cors');
+const fastifyCors = require('@fastify/cors');
 const fs = require('fs');
 const util = require('util');
 const { mongoose } = require('./Database');
@@ -42,7 +42,7 @@ fastify.register(fastifyCors, {
         if (origin.includes('localhost')) {
             // Allow requests from localhost
             cb(null, true);
-        } else if (origin === 'https://checkout-dun-three.vercel.app') {
+        } else if (origin === FRONT_END_URL) {
             // could use an array of origins here and check if indexOf is more than 0...
             // Allow requests from https://checkout-dun-three.vercel.app
             cb(null, true);
