@@ -49,6 +49,8 @@ fastify.register(require('@fastify/cors'), {
 
         // do not include CORS headers for requests from localhost
         if (/^localhost$/m.test(req.headers.origin)) {
+
+            console.log("Origin set to false");
             corsOptions.origin = false;
         }
 
@@ -65,7 +67,7 @@ fastify.get("/.well-known/pki-validation/DC9608000F86B10A12E7188D10D4862C.txt", 
 
     try {
 
-        const file = path.resolve('./DC9608000F86B10A12E7188D10D4862C.txt')        
+        const file = path.resolve('./DC9608000F86B10A12E7188D10D4862C.txt')
         const stream = await readFile(file);
 
         return reply.type('text/html').send(stream);
