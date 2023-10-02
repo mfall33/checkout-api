@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const fastify = require('fastify')();
+const fastifyCors = require('fastify-cors');
 const fs = require('fs');
 const util = require('util');
 const { mongoose } = require('./Database');
@@ -9,7 +10,6 @@ const { PORT, DB_USER, DB_PASS, DB_NAME, APP_NAME, FRONT_END_URL } = process.env
 
 const readFile = util.promisify(fs.readFile);
 const path = require('path');
-
 
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
     useUnifiedTopology: true,
@@ -45,9 +45,11 @@ fastify.register(require('@fastify/cors'), {
             methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE']
         };
 
+        console.log("Origin: " + req.headers.origin);
+
         // do not include CORS headers for requests from localhost
         if (/^localhost$/m.test(req.headers.origin)) {
-            corsOptions.origin = false
+            corsOptions.origin = false;
         }
 
         // callback expects two parameters: error and options
