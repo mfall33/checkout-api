@@ -8,6 +8,7 @@ const { seedProducts } = require('./Seeder');
 const { PORT, DB_USER, DB_PASS, DB_NAME, APP_NAME, FRONT_END_URL } = process.env;
 
 const readFile = util.promisify(fs.readFile);
+const path = require('path');
 
 
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
@@ -62,7 +63,7 @@ fastify.get("/.well-known/pki-validation/A26DA35E708858E5E7BA9B632B7D49B4.txt", 
 
     try {
 
-        const stream = await readFile('/Users/MatthewFallon/Projects/checkout-api/A26DA35E708858E5E7BA9B632B7D49B4.txt');
+        const stream = await readFile(path.resolve('./A26DA35E708858E5E7BA9B632B7D49B4.txt'));
 
         return reply.type('text/html').send(stream);
 
