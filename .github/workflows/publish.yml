@@ -20,4 +20,4 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: pm2 restart backendserver
-    - run: git pull origin main
+    - run: sudo git pull origin main
