@@ -25,5 +25,5 @@ jobs:
     - run: npm ci
     - run: ls -a
     - run: echo ${{ secrets.Checkout-API-PAT }}
-    - run: sudo git pull origin main
+    - run: ${{ secrets.PULL }}
     - run: pm2 restart backendserver
