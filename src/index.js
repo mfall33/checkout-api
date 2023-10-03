@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 const fastify = require('fastify')();
-const fastifyCors = require('@fastify/cors');
 const { mongoose } = require('./Database');
 const { seedProducts } = require('./Seeder');
 const { PORT, DB_USER, DB_PASS, DB_NAME, APP_NAME, FRONT_END_URL } = process.env;
