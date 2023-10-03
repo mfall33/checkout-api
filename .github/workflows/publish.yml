@@ -24,6 +24,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: ls -a
-    -run: echo ${{ secrets.Checkout-API-PAT }}
+    - run: echo ${{ secrets.Checkout-API-PAT }}
     - run: sudo git pull origin main
     - run: pm2 restart backendserver
