@@ -37,7 +37,7 @@ fastify.register(require('@fastify/cors'), {
 })
 
 fastify.get("/", async (request, reply) => {
-    reply.send(`Welcome to GitHub Actions AREE Working.. ${APP_NAME} API`);
+    reply.send(`Welcome to GitHub Actions Working.. ${APP_NAME} API`);
 });
 
 fastify.register(require('./Route/Stripe'))
@@ -50,7 +50,7 @@ fastify.register(require('./Route/Cart'), { prefix: 'api/' })
 fastify.listen({ port: PORT, host: '0.0.0.0' }, function (err) {
     if (err) {
         console.log("Error: " + JSON.stringify(err))
-        process.exit(1)
+        process.exit(1);
     }
 
     console.log(`App listening on port: ${PORT}`);
