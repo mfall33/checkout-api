@@ -24,7 +24,6 @@
     "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "fastify": "^4.21.0",
-    "fastify-cors": "^6.1.0",
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.1",
     "mongo": "^0.1.0",

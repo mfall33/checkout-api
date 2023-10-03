@@ -31,22 +31,13 @@ fastify.setErrorHandler(function (error, request, reply) {
 
 });
 
-fastify.register(fastifyCors, {
-    origin: (origin, cb) => {
-        // Check if the origin is allowed
-        if (origin.includes('localhost')) {
-            // Allow requests from localhost
-            cb(null, true);
-        } else if (origin === FRONT_END_URL) {
-            cb(null, true);
-        } else {
-            // Deny all other origins
-            cb(new Error('Not allowed by CORS'));
-        }
-    },
-});
+fastify.register(require('@fastify/cors'), {
+    origin: ["http://localhost:3000", FRONT_END_URL],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credentials: true
+})
 
-fastify.get("/", (request, reply) => {
+fastify.get("/", async (request, reply) => {
     reply.send(`Welcome to ${APP_NAME} API`);
 });
 
