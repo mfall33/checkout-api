@@ -22,6 +22,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: git pull origin main
+    - run: ${{ secret.PULL }}
     - run: npm ci
     - run: pm2 restart backendserver
