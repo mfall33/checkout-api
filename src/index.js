@@ -37,7 +37,7 @@ fastify.register(require('@fastify/cors'), {
 })
 
 fastify.get("/", async (request, reply) => {
-    reply.send(`Welcome to GitHub Actions ARE ACC Working.. ${APP_NAME} API`);
+    reply.send(`Welcome to GitHub Actions ARE BLOODY Working.. ${APP_NAME} API`);
 });
 
 fastify.register(require('./Route/Stripe'))
