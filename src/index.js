@@ -1,11 +1,11 @@
 require('dotenv').config()
 
-const fastify = require('fastify')();
-const { mongoose } = require('./Database');
+const server = require('./Server');
 const { seedProducts } = require('./Seeder');
-const { PORT, DB_USER, DB_PASS, DB_NAME, APP_NAME, FRONT_END_URL } = process.env;
+const { mongoose: DB } = require('./Database');
+const { PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
 
-mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
+DB.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 })
@@ -15,41 +15,16 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb
     })
     .catch((err) => {
         console.log("db_user: " + process.env.DB_USER);
-        if (err) throw err;
+        if (err) process.exit(1);
+        // we need to replace this ^ with some kind of remote error logging..
     });
 
+const app = server();
 
-fastify.setErrorHandler(function (error, request, reply) {
+app.listen({ port: PORT, host: '0.0.0.0' }, async (err) => {
 
-    if (error.validation) {
-
-        const { instancePath, message } = error.validation[0];
-
-        reply.status(422).send(new Error(`${instancePath.substring(1)} - ${message}`));
-    }
-
-});
-
-fastify.register(require('@fastify/cors'), {
-    origin: ["http://localhost:3000", FRONT_END_URL],
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credentials: true
-})
-
-fastify.get("/", async (request, reply) => {
-    reply.send(`Welcome to GitHub Actions ARE BLOOODY Working.. ${APP_NAME} API`);
-});
-
-fastify.register(require('./Route/Stripe'))
-fastify.register(require('./Route/Verification'))
-
-fastify.register(require('./Route/Auth'), { prefix: 'api/' })
-fastify.register(require('./Route/Products'), { prefix: 'api/' })
-fastify.register(require('./Route/Cart'), { prefix: 'api/' })
-
-fastify.listen({ port: PORT, host: '0.0.0.0' }, function (err) {
     if (err) {
-        console.log("Error: " + JSON.stringify(err))
+        console.log("Error: " + JSON.stringify(err.message))
         process.exit(1);
     }
 
