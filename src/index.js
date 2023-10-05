@@ -19,7 +19,14 @@ DB.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?
         // we need to replace this ^ with some kind of remote error logging..
     });
 
-const app = server();
+const app = server({
+    logger: {
+        level: 'info',
+        transport: {
+            target: 'pino-pretty'
+        }
+    }
+});
 
 app.listen({ port: PORT, host: '0.0.0.0' }, async (err) => {
 

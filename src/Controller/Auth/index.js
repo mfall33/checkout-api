@@ -66,10 +66,11 @@ module.exports.signup = async (request, reply) => {
 
         if (user) {
 
-            reply.send({
-                success: false,
-                message: "This email is already registered!"
-            });
+            reply.status(409)
+                .send({
+                    success: false,
+                    message: "This email is already registered!"
+                });
 
             return;
 
@@ -90,10 +91,11 @@ module.exports.signup = async (request, reply) => {
 
             if (newUser.save()) {
 
-                reply.send({
-                    success: true,
-                    message: "User created successfully!"
-                });
+                reply.status(201)
+                    .send({
+                        success: true,
+                        message: "User created successfully!"
+                    });
 
             } else {
 

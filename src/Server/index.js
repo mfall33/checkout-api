@@ -1,10 +1,12 @@
-const fastify = require('fastify')();
+const fastify = require('fastify');
 
 const { APP_NAME, FRONT_END_URL } = process.env;
 
-const app = () => {
+const build = (opts = {}) => {
 
-    fastify.setErrorHandler(function (error, request, reply) {
+    const app = fastify(opts);
+
+    app.setErrorHandler(function (error, request, reply) {
 
         if (error.validation) {
 
@@ -16,25 +18,26 @@ const app = () => {
     });
 
     // cors handling
-    fastify.register(require('@fastify/cors'), {
+    app.register(require('@fastify/cors'), {
         origin: ["http://localhost:3000", FRONT_END_URL],
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
         credentials: true
     });
 
-    fastify.get("/", async (request, reply) => {
+    app.get("/", async (request, reply) => {
         reply.send(`Welcome to GitHub Actions ARE BLOOODY Working.. ${APP_NAME} API`);
     });
 
-    fastify.register(require('../Route/Stripe'));
-    fastify.register(require('../Route/Verification'));
+    app.register(require('../Route/Stripe'));
+    app.register(require('../Route/Verification'));
 
-    fastify.register(require('../Route/Auth'), { prefix: 'api/' });
-    fastify.register(require('../Route/Products'), { prefix: 'api/' });
-    fastify.register(require('../Route/Cart'), { prefix: 'api/' });
+    app.register(require('../Route/Auth'), { prefix: 'api/' });
+    app.register(require('../Route/Products'), { prefix: 'api/' });
+    app.register(require('../Route/Cart'), { prefix: 'api/' });
 
-    return fastify;
+    return app;
+    
 }
 
-module.exports = app;
+module.exports = build;
 
