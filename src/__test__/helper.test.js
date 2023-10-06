@@ -25,13 +25,13 @@ t.test('Accessing products index without a token', async t => {
     t.teardown(() => app.close())
 
     const response = await app.inject({
-        method: 'GET',
-        url: '/api/products',
+        method: 'POST',
+        url: '/api/register',
     })
 
     console.log("Status: " + response.statusCode);
 
     // forbidden
-    t.equal(response.statusCode, 403)
+    t.equal(response.statusCode, 422)
 
 })

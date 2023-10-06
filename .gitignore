@@ -9,4 +9,4 @@
 
 *.crt
 *.key
-./.tap
+/.tap

@@ -1,7 +1,0 @@
-TAP version 14
-# Subtest: my first test
-    ok 1 - my first assertion
-    1..1
-ok 1 - my first test # time=6.523ms
-
-1..1

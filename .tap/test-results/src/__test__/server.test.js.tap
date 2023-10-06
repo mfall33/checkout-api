@@ -1,6 +1,0 @@
-TAP version 14
-# Subtest: POST `api/signup` - create user successfully
-    1..0
-ok 1 - POST `api/signup` - create user successfully # time=112.572ms
-
-1..1

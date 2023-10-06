@@ -20,3 +20,12 @@ module.exports.stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     maxNetworkRetries: 1,
     timeout: 1000,
 });
+
+module.exports.getEnv = () => {
+
+    if (process.env.NODE_ENV === 'testing') {
+        process.env.DB_PATH = process.env.DB_TEST_PATH;
+    }
+
+    return process.env;
+}
