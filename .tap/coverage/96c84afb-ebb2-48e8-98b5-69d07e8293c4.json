@@ -1,0 +1,770 @@
+{
+  "result": [
+    {
+      "scriptId": "1110",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Server/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 1129,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "build",
+          "ranges": [
+            {
+              "startOffset": 101,
+              "endOffset": 1102,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 175,
+              "endOffset": 420,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 660,
+              "endOffset": 780,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1385",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Route/Stripe/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 170,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports",
+          "ranges": [
+            {
+              "startOffset": 77,
+              "endOffset": 170,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1386",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Controller/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 463,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1387",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Controller/Auth/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 2526,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports.login",
+          "ranges": [
+            {
+              "startOffset": 241,
+              "endOffset": 1308,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.signup",
+          "ranges": [
+            {
+              "startOffset": 1334,
+              "endOffset": 2526,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1413",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Database/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 241,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1414",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Database/Models/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 297,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1415",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Database/Models/Cart.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 2186,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 580,
+              "endOffset": 986,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "CartSchema.statics.findOrCreate",
+          "ranges": [
+            {
+              "startOffset": 1129,
+              "endOffset": 1372,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "CartSchema.methods.addProduct",
+          "ranges": [
+            {
+              "startOffset": 1407,
+              "endOffset": 1773,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "CartSchema.methods.incrementQuantity",
+          "ranges": [
+            {
+              "startOffset": 1816,
+              "endOffset": 2112,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1416",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Database/Models/User.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 431,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 288,
+              "endOffset": 346,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1417",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Events/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 1106,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 328,
+              "endOffset": 1066,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1418",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Email/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 304,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1451",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Database/Models/UserVerifyToken.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 418,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1452",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Database/Models/Product.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 1128,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports.findProducts",
+          "ranges": [
+            {
+              "startOffset": 364,
+              "endOffset": 1128,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1453",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Utils/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 527,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports.generateRandomNumber",
+          "ranges": [
+            {
+              "startOffset": 73,
+              "endOffset": 140,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.paginationOptions",
+          "ranges": [
+            {
+              "startOffset": 178,
+              "endOffset": 311,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.roundDownToNearestTen",
+          "ranges": [
+            {
+              "startOffset": 352,
+              "endOffset": 409,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1588",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Controller/Products/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 554,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports.index",
+          "ranges": [
+            {
+              "startOffset": 71,
+              "endOffset": 302,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.show",
+          "ranges": [
+            {
+              "startOffset": 326,
+              "endOffset": 554,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1589",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Controller/Verification/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 946,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports.verify",
+          "ranges": [
+            {
+              "startOffset": 88,
+              "endOffset": 650,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.verifySuccess",
+          "ranges": [
+            {
+              "startOffset": 683,
+              "endOffset": 792,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.verifyFailure",
+          "ranges": [
+            {
+              "startOffset": 825,
+              "endOffset": 946,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1590",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Controller/Cart/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 2990,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports.index",
+          "ranges": [
+            {
+              "startOffset": 83,
+              "endOffset": 350,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.addItem",
+          "ranges": [
+            {
+              "startOffset": 377,
+              "endOffset": 1064,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.setQuantity",
+          "ranges": [
+            {
+              "startOffset": 1096,
+              "endOffset": 1803,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.removeItem",
+          "ranges": [
+            {
+              "startOffset": 1833,
+              "endOffset": 2624,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "validateProduct",
+          "ranges": [
+            {
+              "startOffset": 2650,
+              "endOffset": 2989,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1591",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Controller/Stripe/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 951,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports.webhook",
+          "ranges": [
+            {
+              "startOffset": 74,
+              "endOffset": 951,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1592",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Route/Verification/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 496,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports",
+          "ranges": [
+            {
+              "startOffset": 82,
+              "endOffset": 496,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1593",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Route/Auth/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 845,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports",
+          "ranges": [
+            {
+              "startOffset": 74,
+              "endOffset": 845,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1594",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Route/Products/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 411,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports",
+          "ranges": [
+            {
+              "startOffset": 144,
+              "endOffset": 411,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1595",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Middleware/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 1106,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "catchError",
+          "ranges": [
+            {
+              "startOffset": 318,
+              "endOffset": 520,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.authorizeJwt",
+          "ranges": [
+            {
+              "startOffset": 552,
+              "endOffset": 897,
+              "count": 1
+            },
+            {
+              "startOffset": 720,
+              "endOffset": 896,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 760,
+              "endOffset": 893,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "module.exports.verifyUser",
+          "ranges": [
+            {
+              "startOffset": 927,
+              "endOffset": 1106,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1596",
+      "url": "file:///Users/MatthewFallon/Projects/checkout-api/src/Route/Cart/index.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 641,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "module.exports",
+          "ranges": [
+            {
+              "startOffset": 140,
+              "endOffset": 641,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    }
+  ],
+  "timestamp": 108679.573639,
+  "source-map-cache": {}
+}

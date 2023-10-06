@@ -14,7 +14,6 @@ module.exports.seedProducts = async () => {
 
         const brands = ['Nike', 'Adidas', 'Versace', 'Cedarwood State', 'Puma', 'Columbia']
 
-        // create 15 products
         for (i = 0; i <= PRODUCTS_TO_SEED; i++) {
 
             products.push({

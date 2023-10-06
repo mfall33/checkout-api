@@ -61,7 +61,6 @@ module.exports.signup = async (request, reply) => {
 
         const { email, password } = request.body;
 
-
         const user = await User.findOne({ email: email });
 
         if (user) {

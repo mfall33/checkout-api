@@ -1,11 +1,16 @@
-require('dotenv').config()
+// INITALIZING ENV
+const dotenv = require('dotenv')
+const dotenvExpand = require('dotenv-expand')
+
+const env = dotenv.config();
+dotenvExpand.expand(env);
 
 const server = require('./Server');
 const { seedProducts } = require('./Seeder');
 const { mongoose: DB } = require('./Database');
-const { PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
+const { PORT, DB_PATH } = process.env;
 
-DB.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.faxceg5.mongodb.net/?retryWrites=true&w=majority`, {
+DB.connect(DB_PATH, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 })

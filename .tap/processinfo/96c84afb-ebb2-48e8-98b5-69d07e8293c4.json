@@ -1,0 +1,51 @@
+{
+  "date": "2023-10-06T11:20:14.328Z",
+  "argv": [
+    "/Users/MatthewFallon/.nvm/versions/node/v16.19.1/bin/node",
+    "/Users/MatthewFallon/Projects/checkout-api/src/__test__/helper.test.js"
+  ],
+  "execArgv": [
+    "--loader=file:///Users/MatthewFallon/Projects/checkout-api/node_modules/ts-node/esm.mjs",
+    "--loader=file:///Users/MatthewFallon/Projects/checkout-api/node_modules/@tapjs/mock/dist/esm/legacy-loader.mjs",
+    "--no-warnings",
+    "--enable-source-maps",
+    "--loader=file:///Users/MatthewFallon/Projects/checkout-api/node_modules/@tapjs/processinfo/dist/esm/loader-legacy.mjs"
+  ],
+  "NODE_OPTIONS": "\"--loader=file:///Users/MatthewFallon/Projects/checkout-api/node_modules/@tapjs/processinfo/dist/esm/loader-legacy.mjs\" \"--no-warnings\"",
+  "cwd": "/Users/MatthewFallon/Projects/checkout-api",
+  "pid": 28195,
+  "ppid": 28178,
+  "parent": null,
+  "uuid": "96c84afb-ebb2-48e8-98b5-69d07e8293c4",
+  "files": [
+    "/Users/MatthewFallon/Projects/checkout-api/src/__test__/helper.test.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Server/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Route/Stripe/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Controller/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Controller/Auth/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Database/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Database/Models/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Database/Models/Cart.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Database/Models/User.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Events/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Email/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Database/Models/UserVerifyToken.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Database/Models/Product.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Utils/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Controller/Products/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Controller/Verification/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Controller/Cart/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Controller/Stripe/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Route/Verification/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Route/Auth/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Route/Products/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Middleware/index.js",
+    "/Users/MatthewFallon/Projects/checkout-api/src/Route/Cart/index.js"
+  ],
+  "sources": {},
+  "root": "96c84afb-ebb2-48e8-98b5-69d07e8293c4",
+  "externalID": "src/__test__/helper.test.js",
+  "code": 0,
+  "signal": null,
+  "runtime": 937.078926
+}

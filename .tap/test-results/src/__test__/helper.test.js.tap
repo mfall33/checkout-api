@@ -1,0 +1,8 @@
+TAP version 14
+Status: 403
+# Subtest: Accessing products index without a token
+    ok 1 - should be equal
+    1..1
+ok 1 - Accessing products index without a token # time=95.156ms
+
+1..1
