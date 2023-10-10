@@ -1,16 +1,22 @@
 const crypto = require('crypto');
 const EventEmitter = require('events').EventEmitter;
 
+const { getEnv } = require('../Utils');
 const transporter = require('../Email');
 const UserVerifyToken = require('../Database/Models/UserVerifyToken');
 
-const { SERVER_BASE_URL, APP_NAME, MAIL_FROM } = process.env;
+const { SERVER_BASE_URL, APP_NAME, MAIL_FROM } = getEnv();
 
 const AuthEvent = new EventEmitter();
 
 AuthEvent.on('new-user', async (user) => {
 
     try {
+
+        // if testing then kill
+        if (process.env.NODE_ENV === 'testing') {
+            return;
+        }
 
         // create new verification token
         const token = crypto.randomBytes(16).toString('hex');

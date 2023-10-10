@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
+const { getEnv } = require("../Utils");
 const { User } = require("../Database");
-const { log } = require("console");
 
-const { APP_SECRET_KEY } = process.env;
+const { APP_SECRET_KEY } = getEnv();
 const { TokenExpiredError } = jwt;
 
 // @snx-mfallon You either call done, or make the method async (or return promise directly), but not both.

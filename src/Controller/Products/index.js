@@ -5,11 +5,11 @@ module.exports.index = async (request, reply) => {
     try {
 
         return await Product.findProducts(request, reply);
-        
+
     } catch (e) {
 
-        console.log(e.message);
-        reply.send({ message: "Failed to retrieve products" });
+        reply.status(403)
+            .send({ message: "Failed to retrieve products" });
     }
 
 }
@@ -24,7 +24,8 @@ module.exports.show = async (request, reply) => {
 
     } catch (e) {
 
-        reply.send({ message: "Failed to retrieve product" });
+        reply.status(403)
+            .send({ message: "Failed to retrieve product" });
 
     }
 

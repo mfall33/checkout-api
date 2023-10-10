@@ -8,11 +8,12 @@ module.exports.index = async (request, reply) => {
 
         await cart.populate('products.product');
 
-        reply.send(cart);
+        reply.status(201).send(cart);
 
     } catch (e) {
 
-        reply.send({ message: "Failed to retrieve Cart" })
+        reply.status(403)
+            .send({ message: "Failed to retrieve Cart" })
 
     }
 
@@ -42,7 +43,8 @@ module.exports.addItem = async function (request, reply) {
 
     } catch (e) {
         console.log("Add Item: " + e.message)
-        reply.send({ message: "Failed to add Cart item" });
+        reply.status(403)
+            .send({ message: "Failed to add Cart item" });
 
     }
 };
@@ -76,7 +78,8 @@ module.exports.setQuantity = async (request, reply) => {
 
     } catch (e) {
 
-        reply.send({ message: "Failed to decrement Cart item quantity" });
+        reply.status(403)
+            .send({ message: "Failed to decrement Cart item quantity" });
 
     }
 
@@ -116,7 +119,8 @@ module.exports.removeItem = async (request, reply) => {
 
     } catch (e) {
 
-        reply.send({ message: "Failed to remove item" })
+        reply.status(403)
+            .send({ message: "Failed to remove item" })
 
     }
 

@@ -1,9 +1,10 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const { JWT_EXPIRATION, APP_SECRET_KEY } = process.env;
 const { User } = require("../../Database");
-const { stripe } = require("../../Utils");
+const { stripe, getEnv } = require("../../Utils");
+
+const { JWT_EXPIRATION, APP_SECRET_KEY } = getEnv();
 
 module.exports.login = async (request, reply) => {
 
@@ -46,10 +47,11 @@ module.exports.login = async (request, reply) => {
 
     } catch (e) {
 
-        reply.send({
-            success: false,
-            message: "Failed to login"
-        });
+        reply.status(403)
+            .send({
+                success: false,
+                message: "Failed to login"
+            });
 
     }
 
@@ -77,7 +79,7 @@ module.exports.signup = async (request, reply) => {
 
         if (!user) {
 
-            const stripeCustomer = await stripe.customers.create({
+            const stripeCustomer = await stripe().customers.create({
                 name: email,
                 email: email,
             });
@@ -106,10 +108,13 @@ module.exports.signup = async (request, reply) => {
 
     } catch (e) {
 
-        reply.send({
-            message: e.message,
-            success: false
-        })
+        console.log("MESSAGE: " + e.message)
+
+        reply.status(403)
+            .send({
+                message: e.message,
+                success: false
+            })
 
     }
 

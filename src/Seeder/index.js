@@ -6,6 +6,8 @@ module.exports.seedProducts = async () => {
 
     const count = await Product.estimatedDocumentCount();
 
+    console.log("COUNT: " + count);
+
     if (count <= 0) {
 
         let products = [];

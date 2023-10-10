@@ -35,13 +35,13 @@ module.exports.verify = async (request, reply) => {
 module.exports.verifySuccess = async (request, reply) => {
 
     reply.type('text/html')
-    reply.send(`Your account has been verified!`)
+        .send(`Your account has been verified!`)
 
 }
 
 module.exports.verifyFailure = async (request, reply) => {
 
     reply.type('text/html')
-    reply.send(`Failed to verify account, please try again!`)
+        .send(`Failed to verify account, please try again!`)
 
 }

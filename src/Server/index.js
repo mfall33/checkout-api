@@ -1,6 +1,9 @@
 const fastify = require('fastify');
+const { getEnv } = require('../Utils');
+const { seedProducts } = require('../Seeder');
+const { mongoose: DB } = require('../Database');
 
-const { APP_NAME, FRONT_END_URL } = process.env;
+const { APP_NAME, FRONT_END_URL, DB_PATH } = getEnv();
 
 const build = (opts = {}) => {
 
@@ -36,7 +39,7 @@ const build = (opts = {}) => {
     app.register(require('../Route/Cart'), { prefix: 'api/' });
 
     return app;
-    
+
 }
 
 module.exports = build;
