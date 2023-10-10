@@ -18,7 +18,7 @@ jobs:
       with:
         fetch-depth: 0
     -name: Create .env file
-      run:
+      run: |
           echo "${{ secrets.ENV_FILE }}" > .env
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
