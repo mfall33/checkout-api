@@ -1,11 +1,10 @@
 const crypto = require('crypto');
 const EventEmitter = require('events').EventEmitter;
 
-const { getEnv } = require('../Utils');
 const transporter = require('../Email');
 const UserVerifyToken = require('../Database/Models/UserVerifyToken');
 
-const { SERVER_BASE_URL, APP_NAME, MAIL_FROM } = getEnv();
+const { SERVER_BASE_URL, APP_NAME, MAIL_FROM, NODE_ENV } = process.env;
 
 const AuthEvent = new EventEmitter();
 
@@ -14,7 +13,7 @@ AuthEvent.on('new-user', async (user) => {
     try {
 
         // if testing then kill
-        if (process.env.NODE_ENV === 'testing') {
+        if (NODE_ENV === 'testing') {
             return;
         }
 

@@ -23,5 +23,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: ${{ secrets.PULL }}
+    - run: npm run test
     - run: npm ci
     - run: pm2 restart backendserver

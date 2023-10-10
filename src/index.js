@@ -6,11 +6,10 @@ const env = dotenv.config();
 dotenvExpand.expand(env);
 
 const server = require('./Server');
-const { getEnv } = require('./Utils');
 const { seedProducts } = require('./Seeder');
 const { mongoose: DB } = require('./Database');
 
-const { PORT, DB_PATH } = getEnv();
+const { PORT, DB_PATH } = process.env;
 
 console.log("DB_PATH: " + DB_PATH)
 

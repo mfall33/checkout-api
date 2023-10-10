@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { getEnv } = require("../Utils");
 const { User } = require("../Database");
 
-const { APP_SECRET_KEY } = getEnv();
 const { TokenExpiredError } = jwt;
 
 // @snx-mfallon You either call done, or make the method async (or return promise directly), but not both.
@@ -29,7 +27,7 @@ module.exports.authorizeJwt = async (req, res) => {
 
     }
 
-    jwt.verify(token, APP_SECRET_KEY, (err, decoded) => {
+    jwt.verify(token, process.env.APP_SECRET_KEY, (err, decoded) => {
 
         if (err) {
 

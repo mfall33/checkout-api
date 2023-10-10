@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
-const { getEnv } = require('../Utils');
 
-const { MAIL_HOST, MAIL_PORT, MAIL_USER, MAIL_PASS } = getEnv();;
+const { MAIL_HOST, MAIL_PORT, MAIL_USER, MAIL_PASS } = process.env;;
 
 const transporter = nodemailer.createTransport({
     host: MAIL_HOST,

@@ -22,14 +22,6 @@ module.exports.stripe = () =>
         timeout: 1000,
     });
 
-module.exports.getEnv = () => {
-
-    if (process.env.NODE_ENV === 'testing') {
-        process.env.DB_PATH = process.env.DB_TEST_PATH;
-    }
-
-    return process.env;
-}
 
 module.exports.cleanDB = async (database, url) => {
     try {
@@ -42,7 +34,7 @@ module.exports.cleanDB = async (database, url) => {
         // Iterate over each collection and drop it
         for (const collection of collections) {
             await database.connection.db.dropCollection(collection.name);
-            console.log(`Dropped collection: ${collection.name}`);
+            // console.log(`Dropped collection: ${collection.name}`);
         }
     } catch (error) {
         console.error('Error cleaning MongoDB:', error);

@@ -2,9 +2,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const { User } = require("../../Database");
-const { stripe, getEnv } = require("../../Utils");
+const { stripe } = require("../../Utils");
 
-const { JWT_EXPIRATION, APP_SECRET_KEY } = getEnv();
+const { NODE_ENV, APP_SECRET_KEY, JWT_EXPIRATION } = process.env;
 
 module.exports.login = async (request, reply) => {
 
@@ -14,40 +14,44 @@ module.exports.login = async (request, reply) => {
 
         if (!user || !user.verified) {
 
-            reply.status(403).send({
+            return reply.status(403).send({
                 success: false,
                 message: "Unauthorized!!",
             });
 
-        }
+        } else {
 
-        var passwordIsValid = bcrypt.compareSync(
-            request.body.password,
-            user.password
-        );
+            var passwordIsValid = bcrypt.compareSync(
+                request.body.password,
+                user.password
+            );
 
-        if (!passwordIsValid) {
-            return reply.status(401).send({
-                success: false,
-                accessToken: null,
-                message: "Invalid Password!"
+            if (!passwordIsValid) {
+
+                return reply.status(401).send({
+                    success: false,
+                    accessToken: null,
+                    message: "Invalid Password!"
+                });
+
+            }
+
+            const token = jwt.sign({ id: user.id }, process.env.APP_SECRET_KEY, {
+                expiresIn: Number(process.env.JWT_EXPIRATION),
             });
+
+            return reply.status(200).send({
+                email: user.email,
+                access_token: token,
+                stripe_customer_id: user.stripe_id,
+                success: true
+            });
+
         }
-
-        var token = jwt.sign({ id: user.id }, APP_SECRET_KEY, {
-            expiresIn: Number(JWT_EXPIRATION),
-        });
-
-        reply.status(200).send({
-            email: user.email,
-            access_token: token,
-            stripe_customer_id: user.stripe_id,
-            success: true
-        });
 
     } catch (e) {
 
-        reply.status(403)
+        return reply.status(403)
             .send({
                 success: false,
                 message: "Failed to login"
@@ -67,13 +71,11 @@ module.exports.signup = async (request, reply) => {
 
         if (user) {
 
-            reply.status(409)
+            return reply.status(409)
                 .send({
                     success: false,
                     message: "This email is already registered!"
                 });
-
-            return;
 
         }
 
@@ -90,9 +92,13 @@ module.exports.signup = async (request, reply) => {
                 stripe_id: stripeCustomer.id
             });
 
+            if (NODE_ENV === 'testing') {
+                newUser.verified = true;
+            }
+
             if (newUser.save()) {
 
-                reply.status(201)
+                return reply.status(201)
                     .send({
                         success: true,
                         message: "User created successfully!"
@@ -108,9 +114,9 @@ module.exports.signup = async (request, reply) => {
 
     } catch (e) {
 
-        console.log("MESSAGE: " + e.message)
+        console.log("REGISTER: " + e.message);
 
-        reply.status(403)
+        return reply.status(403)
             .send({
                 message: e.message,
                 success: false

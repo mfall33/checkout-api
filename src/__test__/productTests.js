@@ -1,0 +1,1 @@
+console.log("Product Access Token: " + (global.access_token));

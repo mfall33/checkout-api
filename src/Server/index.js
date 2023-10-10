@@ -1,9 +1,6 @@
 const fastify = require('fastify');
-const { getEnv } = require('../Utils');
-const { seedProducts } = require('../Seeder');
-const { mongoose: DB } = require('../Database');
 
-const { APP_NAME, FRONT_END_URL, DB_PATH } = getEnv();
+const { APP_NAME, FRONT_END_URL } = process.env;
 
 const build = (opts = {}) => {
 
