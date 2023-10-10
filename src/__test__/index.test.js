@@ -18,7 +18,7 @@ console.log("DB_PATH: " + DB_PATH);
 
 beforeAll(async () => {
 
-    await DB.connect(DB_PATH, { useNewUrlParser: true, useUnifiedTopology: true });
+    await DB.connect("mongodb+srv://matthewfallon33:G4nIrdNiauYTkujg@checkout-db.faxceg5.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 
     await cleanDB(DB, DB_PATH);
 
