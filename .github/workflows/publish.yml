@@ -22,6 +22,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+      env:
+        DB_PATH: mongodb+srv://$DB_USER:$DB_PASS@$DB_NAME.faxceg5.mongodb.net/?retryWrites=true&w=majority
     - run: ${{ secrets.PULL }}
     - run: echo "${{ secrets.ENV_FILE }}" > .env
     - run: npm ci
