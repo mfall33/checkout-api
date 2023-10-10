@@ -14,10 +14,12 @@ dotenvExpand.expand(env);
 
 const { DB_PATH } = process.env;
 
+console.log("DB_PATH: " + DB_PATH);
+
 beforeAll(async () => {
 
     await DB.connect(DB_PATH, { useNewUrlParser: true, useUnifiedTopology: true });
-    
+
     await cleanDB(DB, DB_PATH);
 
     await seedProducts();
