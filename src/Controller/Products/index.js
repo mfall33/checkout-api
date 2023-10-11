@@ -9,7 +9,7 @@ module.exports.index = async (request, reply) => {
     } catch (e) {
 
         reply.status(403)
-            .send({ message: "Failed to retrieve products" });
+            .type('application/json').send({ message: "Failed to retrieve products" });
     }
 
 }
@@ -25,7 +25,7 @@ module.exports.show = async (request, reply) => {
     } catch (e) {
 
         reply.status(403)
-            .send({ message: "Failed to retrieve product" });
+            .type('application/json').send({ message: "Failed to retrieve product" });
 
     }
 

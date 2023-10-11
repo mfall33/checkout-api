@@ -13,7 +13,7 @@ module.exports.index = async (request, reply) => {
     } catch (e) {
 
         reply.status(403)
-            .send({ message: "Failed to retrieve Cart" })
+            .type('application/json').send({ message: "Failed to retrieve Cart" })
 
     }
 
@@ -44,7 +44,7 @@ module.exports.addItem = async function (request, reply) {
     } catch (e) {
         console.log("Add Item: " + e.message)
         reply.status(403)
-            .send({ message: "Failed to add Cart item" });
+            .type('application/json').send({ message: "Failed to add Cart item" });
 
     }
 };
@@ -79,7 +79,7 @@ module.exports.setQuantity = async (request, reply) => {
     } catch (e) {
 
         reply.status(403)
-            .send({ message: "Failed to decrement Cart item quantity" });
+            .type('application/json').send({ message: "Failed to decrement Cart item quantity" });
 
     }
 
@@ -120,7 +120,7 @@ module.exports.removeItem = async (request, reply) => {
     } catch (e) {
 
         reply.status(403)
-            .send({ message: "Failed to remove item" })
+            .type('application/json').send({ message: "Failed to remove item" })
 
     }
 

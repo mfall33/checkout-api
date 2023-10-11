@@ -23,7 +23,7 @@ module.exports.webhook = async (request, reply) => {
         console.error(e.message);
         // Handle any errors here
         reply.status(403)
-            .send({ message: "Failed to write request body to file" });
+            .type('application/json').send({ message: "Failed to write request body to file" });
     }
 
 }

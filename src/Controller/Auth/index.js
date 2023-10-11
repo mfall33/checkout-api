@@ -14,7 +14,7 @@ module.exports.login = async (request, reply) => {
 
         if (!user || !user.verified) {
 
-            return reply.status(403).send({
+            return reply.status(403).type('application/json').send({
                 success: false,
                 message: "Unauthorized!!",
             });
@@ -28,7 +28,7 @@ module.exports.login = async (request, reply) => {
 
             if (!passwordIsValid) {
 
-                return reply.status(401).send({
+                return reply.status(401).type('application/json').send({
                     success: false,
                     accessToken: null,
                     message: "Invalid Password!"
@@ -40,7 +40,7 @@ module.exports.login = async (request, reply) => {
                 expiresIn: Number(process.env.JWT_EXPIRATION),
             });
 
-            return reply.status(200).send({
+            return reply.status(200).type('application/json').send({
                 email: user.email,
                 access_token: token,
                 stripe_customer_id: user.stripe_id,
@@ -54,7 +54,7 @@ module.exports.login = async (request, reply) => {
         console.log("LoginErr: " + e.message)
 
         return reply.status(403)
-            .send({
+            .type('application/json').send({
                 success: false,
                 message: "Failed to login"
             });
@@ -74,7 +74,7 @@ module.exports.signup = async (request, reply) => {
         if (user) {
 
             return reply.status(409)
-                .send({
+                .type('application/json').send({
                     success: false,
                     message: "This email is already registered!"
                 });
@@ -101,7 +101,7 @@ module.exports.signup = async (request, reply) => {
             if (newUser.save()) {
 
                 return reply.status(201)
-                    .send({
+                    .type('application/json').send({
                         success: true,
                         message: "User created successfully!"
                     });
@@ -119,7 +119,7 @@ module.exports.signup = async (request, reply) => {
         console.log("REGISTER: " + e.message);
 
         return reply.status(403)
-            .send({
+            .type('application/json').send({
                 message: e.message,
                 success: false
             })

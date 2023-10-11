@@ -26,9 +26,12 @@ jobs:
         DB_PATH: ${{ secrets.DB_PATH }}
     - run: ${{ secrets.PULL }}
     - run: npm ci
-    - run: echo "DB_PATH=${{ secrets.DB_PATH }}" >> .env
-    - run: echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" >> .env
-    - run: echo "APP_SECRET_KEY=${{ secrets.APP_SECRET_KEY }}" >> .env
-    - run: echo "JWT_EXPIRATION=${{ secrets.JWT_EXPIRATION }}" >> .env
-    - run: npm run test
+
+    # TESTS: Need to setup a Test DB these tests clear the DB so can't have them in for main DB
+    # - run: echo "DB_PATH=${{ secrets.DB_PATH }}" >> .env
+    # - run: echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" >> .env
+    # - run: echo "APP_SECRET_KEY=${{ secrets.APP_SECRET_KEY }}" >> .env
+    # - run: echo "JWT_EXPIRATION=${{ secrets.JWT_EXPIRATION }}" >> .env
+    # - run: npm run test
+
     - run: pm2 restart backendserver

@@ -12,7 +12,6 @@ const app = server();
 const env = dotenv.config();
 dotenvExpand.expand(env);
 
-
 beforeAll(async () => {
 
     await DB.connect(process.env.DB_PATH, { useNewUrlParser: true, useUnifiedTopology: true });
