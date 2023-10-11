@@ -11,8 +11,6 @@ const { mongoose: DB } = require('./Database');
 
 const { PORT, DB_PATH } = process.env;
 
-console.log("DB_PATH: " + DB_PATH)
-
 DB.connect(DB_PATH, {
     useUnifiedTopology: true,
     useNewUrlParser: true,

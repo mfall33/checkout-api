@@ -30,8 +30,6 @@ CartSchema.virtual('total').get(function () {
     try {
         let total = 0;
 
-        console.log("Productos: " + JSON.stringify(this.products))
-
         for (const item of this.products) {
 
             const productPrice = item.product.price;
@@ -42,9 +40,9 @@ CartSchema.virtual('total').get(function () {
         return total;
 
     } catch(e) {
-        throw new Error(e);
-        console.log("Virtual Total: " + e.message);
 
+        throw new Error(e);
+        
     }
 });
 
