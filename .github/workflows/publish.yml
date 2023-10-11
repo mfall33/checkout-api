@@ -26,10 +26,10 @@ jobs:
         DB_PATH: ${{ secrets.DB_PATH }}
     - run: ${{ secrets.PULL }}
     - run: npm ci
-    - run: echo "DB_PATH=${{ vars.DB_PATH }}" >> .env
-    - run: echo "STRIPE_SECRET_KEY=${{ vars.STRIPE_SECRET_KEY }}" >> .env
-    - run: echo "APP_SECRET_KEY=${{ vars.APP_SECRET_KEY }}" >> .env
-    - run: echo "JWT_EXPIRATION=${{ vars.JWT_EXPIRATION }}" >> .env
-    # - run: set DB_PATH=${{ vars.DB_PATH }}
+    - run: echo "DB_PATH=${{ secrets.DB_PATH }}" >> .env
+    - run: echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" >> .env
+    - run: echo "APP_SECRET_KEY=${{ secrets.APP_SECRET_KEY }}" >> .env
+    - run: echo "JWT_EXPIRATION=${{ secrets.JWT_EXPIRATION }}" >> .env
+    # - run: set DB_PATH=${{ secrets.DB_PATH }}
     - run: npm run test
     - run: pm2 restart backendserver
