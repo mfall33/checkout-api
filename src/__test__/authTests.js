@@ -21,7 +21,7 @@ module.exports = (app) => {
         expect(registerResponse.statusCode).toBe(201);
 
         // wait for user to be added..
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        await new Promise(resolve => setTimeout(resolve, 4000));
 
         const loginResponse = await app.inject({
             method: 'POST',
