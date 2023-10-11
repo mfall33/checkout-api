@@ -116,8 +116,6 @@ module.exports.signup = async (request, reply) => {
 
     } catch (e) {
 
-        console.log("REGISTER: " + e.message);
-
         return reply.status(403)
             .type('application/json').send({
                 message: e.message,

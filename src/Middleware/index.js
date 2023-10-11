@@ -3,8 +3,6 @@ const { User } = require("../Database");
 
 const { TokenExpiredError } = jwt;
 
-// @snx-mfallon You either call done, or make the method async (or return promise directly), but not both.
-
 const catchError = (err, res) => {
 
     if (err instanceof TokenExpiredError) {

@@ -13,15 +13,13 @@ module.exports.index = async (request, reply) => {
     } catch (e) {
 
         reply.status(403)
-            .type('application/json').send({ message: "Failed to retrieve Cart" })
+            .type('application/json').send({ message: "Failed to retrieve Cart" });
 
     }
 
 }
 
 module.exports.addItem = async function (request, reply) {
-
-    console.log("AddItem")
 
     try {
 
