@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../../Database");
 const { stripe } = require("../../Utils");
 
-const { NODE_ENV, APP_SECRET_KEY, JWT_EXPIRATION } = process.env;
+const { NODE_ENV } = process.env;
 
 module.exports.login = async (request, reply) => {
 
@@ -50,6 +50,8 @@ module.exports.login = async (request, reply) => {
         }
 
     } catch (e) {
+
+        console.log("LoginErr: " + e.message)
 
         return reply.status(403)
             .send({
