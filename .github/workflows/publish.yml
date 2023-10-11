@@ -26,7 +26,8 @@ jobs:
         DB_PATH: ${{ secrets.DB_PATH }}
     - run: ${{ secrets.PULL }}
     - run: npm ci
-    - run: echo "DB_PATH=${{ vars.DB_PATH }} STRIPE_SECRET_KEY=${{ vars.STRIPE_SECRET_KEY }}" > .env
+    - run: echo "DB_PATH=${{ vars.DB_PATH }}" >> .env
+    - run: echo "STRIPE_SECRET_KEY=${{ vars.STRIPE_SECRET_KEY }}" >> .env
     # - run: set DB_PATH=${{ vars.DB_PATH }}
     - run: npm run test
     - run: pm2 restart backendserver
