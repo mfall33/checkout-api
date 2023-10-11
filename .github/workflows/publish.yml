@@ -25,7 +25,6 @@ jobs:
       env: 
         DB_PATH: ${{ secrets.DB_PATH }}
     - run: ${{ secrets.PULL }}
-    - run:  
     - run: npm ci
     - run: set DB_PATH=${{ vars.DB_PATH }} && npm run test
     - run: pm2 restart backendserver
