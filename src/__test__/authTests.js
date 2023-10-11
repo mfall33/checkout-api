@@ -16,6 +16,8 @@ module.exports = (app) => {
             }
         });
 
+        console.log("register response code: " + registerResponse.statusCode);
+
         expect(registerResponse.statusCode).toBe(201);
 
         // wait for user to be added..
@@ -31,6 +33,8 @@ module.exports = (app) => {
         });
 
         const { access_token } = loginResponse.json();
+
+        console.log("login response code: " + loginResponse.statusCode);
 
         global.access_token = access_token;
 
