@@ -6,8 +6,6 @@ module.exports.seedProducts = async () => {
 
     const count = await Product.estimatedDocumentCount();
 
-    console.log("COUNT: " + count);
-
     if (count <= 0) {
 
         let products = [];
@@ -28,9 +26,9 @@ module.exports.seedProducts = async () => {
         }
 
         // batch insert
-        await Product.insertMany(products)
+        await Product.insertMany(products);
 
-        console.log(`${PRODUCTS_TO_SEED} Products Seeded!`)
+        console.log(`${PRODUCTS_TO_SEED} Products Seeded!`);
 
     }
 }

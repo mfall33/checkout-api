@@ -25,7 +25,7 @@ const build = (opts = {}) => {
     });
 
     app.get("/", async (request, reply) => {
-        reply.send(`Welcome to GitHub Actions ARE BLOOODY Working.. ${APP_NAME} API`);
+        reply.send(`Welcome to ${APP_NAME} API`);
     });
 
     app.register(require('../Route/Stripe'));

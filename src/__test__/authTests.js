@@ -1,6 +1,3 @@
-// should add in some tests for dodgy criteria failed logins etc..
-
-
 module.exports = (app) => {
 
     let productId = null;
@@ -15,8 +12,6 @@ module.exports = (app) => {
                 password: 'Password123'
             }
         });
-
-        console.log("register response code: " + registerResponse.statusCode);
 
         expect(registerResponse.statusCode).toBe(201);
 
@@ -34,8 +29,6 @@ module.exports = (app) => {
 
         const { access_token } = loginResponse.json();
 
-        console.log("login response code: " + loginResponse.statusCode);
-
         global.access_token = access_token;
 
         expect(loginResponse.statusCode).toBe(200);
@@ -43,8 +36,6 @@ module.exports = (app) => {
     });
 
     test('Product Index Route', async function () {
-
-        console.log("ProductIdxToken: " + global.access_token);
 
         const productIndexResponse = await app.inject({
             method: 'GET',
@@ -56,7 +47,6 @@ module.exports = (app) => {
 
         const { products } = productIndexResponse.json();
 
-        console.log("Products: " + JSON.stringify(products));
         productId = products[0]._id;
 
     });
