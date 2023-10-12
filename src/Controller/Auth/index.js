@@ -2,13 +2,22 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const { User } = require("../../Database");
-const { stripe } = require("../../Utils");
+const { stripe, ErrorHandler } = require("../../Utils");
+const { loginFields, registerFields } = require("../../Requests");
 
 const { NODE_ENV } = process.env;
 
 module.exports.login = async (request, reply) => {
 
     try {
+
+        const errors = new ErrorHandler();
+
+        errors.validateRequest(request.body, loginFields);
+
+        if (errors.hasErrors()) {
+            return reply.status(422).type('application/json').send(errors);
+        }
 
         const user = await User.findOne({ email: request.body.email });
 
@@ -67,18 +76,25 @@ module.exports.signup = async (request, reply) => {
 
     try {
 
+        const errors = new ErrorHandler();
+
+        errors.validateRequest(request.body, registerFields);
+
         const { email, password } = request.body;
 
         const user = await User.findOne({ email: email });
 
         if (user) {
 
-            return reply.status(409)
-                .type('application/json').send({
-                    success: false,
-                    message: "This email is already registered!"
-                });
+            errors.addError("email", "This email is already registered!")
 
+        }
+
+        if (errors.hasErrors()) {
+            return reply.status(422).type('application/json').send({
+                success: false,
+                ...errors
+            });
         }
 
         if (!user) {

@@ -6,17 +6,6 @@ const build = (opts = {}) => {
 
     const app = fastify(opts);
 
-    app.setErrorHandler(function (error, request, reply) {
-
-        if (error.validation) {
-
-            const { instancePath, message } = error.validation[0];
-
-            reply.status(422).send(new Error(`${instancePath.substring(1)} - ${message}`));
-        }
-
-    });
-
     // cors handling
     app.register(require('@fastify/cors'), {
         origin: ["http://localhost:3000", FRONT_END_URL],
