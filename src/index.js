@@ -38,7 +38,7 @@ const app = server({
 app.listen({ port: PORT, host: '0.0.0.0' }, async (err) => {
 
     if (err) {
-        console.log("Error: " + JSON.stringify(err.message))
+        console.log("Error: " + JSON.stringify(err.message));
         process.exit(1);
     }
 
