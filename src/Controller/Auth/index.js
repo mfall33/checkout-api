@@ -40,7 +40,7 @@ module.exports.login = async (request, reply) => {
                 return reply.status(401).type('application/json').send({
                     success: false,
                     accessToken: null,
-                    message: "Invalid Password!"
+                    message: "Invalid Password or Email!"
                 });
 
             }
