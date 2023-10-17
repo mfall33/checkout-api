@@ -4,8 +4,7 @@ module.exports.loginFields = [
     {
         field: 'email',
         rules: {
-            required: true,
-            email: true,
+            required: true
         }
     },
     {

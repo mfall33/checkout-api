@@ -1,5 +1,6 @@
 const Stripe = require('stripe');
 const ErrorHandler = require('./errorHandler');
+const Logger = require('./logger');
 
 module.exports.generateRandomNumber = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
@@ -43,3 +44,4 @@ module.exports.cleanDB = async (database, url) => {
 }
 
 module.exports.ErrorHandler = ErrorHandler;
+module.exports.Logger = Logger;

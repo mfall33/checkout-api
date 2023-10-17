@@ -60,10 +60,9 @@ module.exports.login = async (request, reply) => {
 
     } catch (e) {
 
-        console.log("LoginErr: " + e.message)
-
         return reply.status(403)
-            .type('application/json').send({
+            .type('application/json')
+            .send({
                 success: false,
                 message: "Failed to login"
             });
@@ -133,7 +132,8 @@ module.exports.signup = async (request, reply) => {
     } catch (e) {
 
         return reply.status(403)
-            .type('application/json').send({
+            .type('application/json')
+            .send({
                 message: e.message,
                 success: false
             })

@@ -8,6 +8,7 @@ dotenvExpand.expand(env);
 const server = require('./Server');
 const { seedProducts } = require('./Seeder');
 const { mongoose: DB } = require('./Database');
+const logger = require('./Utils/logger');
 
 const { PORT, DB_PATH } = process.env;
 
@@ -20,7 +21,6 @@ DB.connect(DB_PATH, {
         await seedProducts();
     })
     .catch((err) => {
-
         if (err) process.exit(1);
         // we need to replace this ^ with some kind of remote error logging..
     });
@@ -33,7 +33,6 @@ const app = server({
         }
     }
 });
-
 
 app.listen({ port: PORT, host: '0.0.0.0' }, async (err) => {
 
