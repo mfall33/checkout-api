@@ -17,7 +17,7 @@ module.exports.webhook = async (request, reply) => {
         const filePath = 'stripe_webhook_data.json'; // Change this to your preferred file path
 
         // Write the stringified request body to a file
-        await fsPromises.writeFile(filePath, requestBodyJson);
+        // await fsPromises.writeFile(filePath, requestBodyJson);
 
         console.log(`Request body has been written to ${filePath}`);
 
