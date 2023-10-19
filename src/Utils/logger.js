@@ -1,13 +1,8 @@
 const fs = require('fs');
+const path = require('path');
 
-const { INFO_LOG_FILE, ERROR_LOG_FILE } = process.env;
-
-console.log("INFO_LOG_FILE: " + INFO_LOG_FILE);
-console.log("ERROR_LOG_FILE: " + ERROR_LOG_FILE);
-
-fs.chmod(INFO_LOG_FILE, 0o777, () => {
-    console.log("done")
-})
+const INFO_LOG_FILE = path.join(__dirname, '..', '..', 'logs', 'app.log');
+const ERROR_LOG_FILE = path.join(__dirname, '..', '..', 'logs', 'app.error.log');
 
 const output = fs.createWriteStream(INFO_LOG_FILE, {
     flags: 'w'
