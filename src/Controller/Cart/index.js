@@ -1,4 +1,4 @@
-const { Cart, Product } = require("../../Database/Models")
+const { Cart, Product } = require("../../Database");
 
 module.exports.index = async (request, reply) => {
 

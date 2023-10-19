@@ -1,5 +1,5 @@
-const { promises: fsPromises } = require("fs");
 const { Logger } = require("../../Utils");
+const { User, Cart } = require("../../Database");
 
 module.exports.webhook = async (request, reply) => {
 
@@ -8,10 +8,16 @@ module.exports.webhook = async (request, reply) => {
     // we need to get the customer_id and then retrieve the user and then delete their cart OR move it into orders
 
     try {
-        // Stringify the request body
-        const requestBodyJson = JSON.stringify(request.body, null, 2);
 
-        Logger.log(request.body);
+        const customerId = request.body.data.object.customer;
+
+        const user = await User.findOne({ stripe_id: customerId });
+
+        const cart = await Cart.findOne({ user: user.id });
+
+        cart.products = [];
+
+        cart.save();
 
         reply.send();
 
