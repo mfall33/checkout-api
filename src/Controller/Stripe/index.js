@@ -12,24 +12,26 @@ module.exports.webhook = async (request, reply) => {
 
     try {
 
-        Logger.log(request.body.type);
+        if (request.body.type === 'payment_intent.succeeded') {
 
-        const customerId = request.body.data.object.customer;
+            const customerId = request.body.data.object.customer;
 
-        const user = await User.findOne({ stripe_id: customerId });
+            const user = await User.findOne({ stripe_id: customerId });
 
-        const cart = await Cart.findOne({ user: user.id });
+            const cart = await Cart.findOne({ user: user.id });
 
-        cart.products = [];
+            cart.products = [];
 
-        await cart.save();
+            await cart.save();
 
-        await transporter.sendMail({
-            from: MAIL_FROM,
-            to: user.email,
-            subject: `${APP_NAME} | Your Order!`,
-            text: `Your order has been placed!`,
-        })
+            await transporter.sendMail({
+                from: MAIL_FROM,
+                to: user.email,
+                subject: `${APP_NAME} | Your Order!`,
+                text: `Your order has been placed!`,
+            })
+
+        }
 
         reply.send();
 
