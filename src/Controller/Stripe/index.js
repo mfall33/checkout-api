@@ -12,7 +12,7 @@ module.exports.webhook = async (request, reply) => {
 
     try {
 
-        Logger.log(request.body);
+        Logger.log(request.body.type);
 
         const customerId = request.body.data.object.customer;
 
