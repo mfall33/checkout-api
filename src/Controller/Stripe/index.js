@@ -1,5 +1,8 @@
 const { Logger } = require("../../Utils");
 const { User, Cart } = require("../../Database");
+const transporter = require('../../Email');
+
+const { APP_NAME, MAIL_FROM } = process.env;
 
 module.exports.webhook = async (request, reply) => {
 
@@ -9,6 +12,8 @@ module.exports.webhook = async (request, reply) => {
 
     try {
 
+        Logger.log(request.body.data);
+
         const customerId = request.body.data.object.customer;
 
         const user = await User.findOne({ stripe_id: customerId });
@@ -17,7 +22,14 @@ module.exports.webhook = async (request, reply) => {
 
         cart.products = [];
 
-        cart.save();
+        await cart.save();
+
+        await transporter.sendMail({
+            from: MAIL_FROM,
+            to: user.email,
+            subject: `${APP_NAME} | Your Order!`,
+            text: `Your order has been placed!`,
+        })
 
         reply.send();
 
